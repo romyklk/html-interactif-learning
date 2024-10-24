@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours HTML Avancé et Interactif</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #50c878;
+            --background-light: #f4f7f9;
+            --text-light: #333333;
+            --background-dark: #1a1a1a;
+            --text-dark: #f0f0f0;
+            --accent-color: #ff6b6b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        details {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: var(--primary-color);
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        summary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .content {
+            padding: 1rem;
+        }
+
+        .example {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .quiz {
+            background-color: rgba(80, 200, 120, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #mode-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+
+        pre {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+        }
+
+        .result {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <button id="mode-toggle" class="btn">
+        <i class="fas fa-moon"></i> Mode Sombre
+    </button>
+
+    <div class="container">
+        <h1><i class="fas fa-graduation-cap icon"></i>Cours Interactif HTML Complet pour Débutants</h1>
+
+        <details>
+            <summary><i class="fas fa-info-circle icon"></i>1. Introduction au HTML</summary>
+            <div class="content">
+                <p>HTML (HyperText Markup Language) est le langage fondamental du web. Créé par Tim Berners-Lee en 1989,
+                    il permet de structurer le contenu des pages web.</p>
+
+                <h3>Pourquoi le HTML est-il important ?</h3>
+                <ul>
+                    <li>Il fournit la structure de base pour toutes les pages web</li>
+                    <li>Il est compatible avec tous les navigateurs</li>
+                    <li>Il est la base pour d'autres technologies web comme CSS et JavaScript</li>
+                </ul>
+
+                <h3>Évolution du HTML</h3>
+                <p>Le HTML a évolué au fil des années :</p>
+                <ul>
+                    <li>HTML 1.0 (1991) : Version initiale</li>
+                    <li>HTML 4.01 (1999) : Ajout de feuilles de style et scripts</li>
+                    <li>XHTML (2000) : Version plus stricte basée sur XML</li>
+                    <li>HTML5 (2014) : Introduction d'éléments sémantiques et multimédia</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Structure de base HTML5</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Ma première page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bienvenue sur ma page&lt;/h1&gt;
+    &lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-1')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-1" class="result" style="display: none;">
+                        <h1>Bienvenue sur ma page</h1>
+                        <p>Ceci est un paragraphe.</p>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Introduction au HTML</h4>
+                    <form id="quiz1">
+                        <p>1. Que signifie HTML ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) HyperText Markup Language</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) High-Level Text Management
+                            Language</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) Hyperlink and Text Manipulation
+                            Language</label><br>
+
+                        <p>2. Quelle version de HTML a introduit les éléments sémantiques ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) HTML 4.01</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) XHTML</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) HTML5</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(1)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-1"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-sitemap icon"></i>2. Structure et Sémantique HTML5</summary>
+            <div class="content">
+                <p>HTML5 a introduit de nombreux éléments sémantiques qui donnent plus de sens à la structure de votre
+                    page. Ces éléments aident les moteurs de recherche et les technologies d'assistance à mieux
+                    comprendre votre contenu.</p>
+
+                <h3>Principaux éléments sémantiques HTML5</h3>
+                <ul>
+                    <li><code>&lt;header&gt;</code> : En-tête de la page ou d'une section</li>
+                    <li><code>&lt;nav&gt;</code> : Section de navigation</li>
+                    <li><code>&lt;main&gt;</code> : Contenu principal de la page</li>
+                    <li><code>&lt;article&gt;</code> : Contenu autonome et indépendant</li>
+                    <li><code>&lt;section&gt;</code> : Section thématique du contenu</li>
+                    <li><code>&lt;aside&gt;</code> : Contenu connexe ou secondaire</li>
+                    <li><code>&lt;footer&gt;</code> : Pied de page</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Structure sémantique HTML5</h4>
+                    <pre><code>&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Mon Site Web&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;À propos&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Titre de l'article&lt;/h2&gt;
+            &lt;p&gt;Contenu de l'article...&lt;/p&gt;
+        &lt;/article&gt;
+
+        &lt;aside&gt;
+            &lt;h3&gt;Contenu connexe&lt;/h3&gt;
+            &lt;p&gt;Informations supplémentaires...&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 Mon Site Web. Tous droits réservés.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-2')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-2" class="result" style="display: none;">
+                        <header>
+                            <h1>Mon Site Web</h1>
+                            <nav>
+                                <ul>
+                                    <li><a href="#">Accueil</a></li>
+                                    <li><a href="#">À propos</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </header>
+
+                        <main>
+                            <article>
+                                <h2>Titre de l'article</h2>
+                                <p>Contenu de l'article...</p>
+                            </article>
+
+                            <aside>
+                                <h3>Contenu connexe</h3>
+                                <p>Informations supplémentaires...</p>
+                            </aside>
+                        </main>
+
+                        <footer>
+                            <p>&copy; 2023 Mon Site Web. Tous droits réservés.</p>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Structure et Sémantique HTML5</h4>
+                    <form id="quiz2">
+                        <p>1. Quel élément HTML5 est utilisé pour le contenu principal de la page ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;body&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;content&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;main&gt;</label><br>
+
+                        <p>2. Quelle est la principale raison d'utiliser des éléments sémantiques ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) Pour rendre la page plus jolie</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) Pour améliorer l'accessibilité et le
+                            SEO</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) Pour rendre le code plus court</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(2)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-2"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-font icon"></i>3. Les éléments de texte</summary>
+            <div class="content">
+                <p>Les éléments de texte en HTML permettent de structurer et de formater le contenu textuel d'une page
+                    web. Ils incluent les titres, paragraphes, citations, et balises de mise en forme.</p>
+
+                <h3>Principaux éléments de texte</h3>
+                <ul>
+                    <li><code>&lt;h1&gt;</code> à <code>&lt;h6&gt;</code> : Titres de différents niveaux</li>
+                    <li><code>&lt;p&gt;</code> : Paragraphe</li>
+                    <li><code>&lt;strong&gt;</code> : Texte important (généralement en gras)</li>
+                    <li><code>&lt;em&gt;</code> : Texte mis en emphase (généralement en italique)</li>
+                    <li><code>&lt;blockquote&gt;</code> : Citation longue</li>
+                    <li><code>&lt;q&gt;</code> : Citation courte</li>
+                    <li><code>&lt;abbr&gt;</code> : Abréviation</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Éléments de texte</h4>
+                    <pre><code>&lt;h1&gt;Titre principal&lt;/h1&gt;
+&lt;h2&gt;Sous-titre&lt;/h2&gt;
+&lt;p&gt;Ceci est un &lt;strong&gt;paragraphe&lt;/strong&gt; avec du texte &lt;em&gt;mis en valeur&lt;/em&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+    Ceci est une longue citation qui peut s'étendre sur plusieurs lignes.
+&lt;/blockquote&gt;
+&lt;p&gt;Comme l'a dit quelqu'un, &lt;q&gt;Une citation courte&lt;/q&gt;.&lt;/p&gt;
+&lt;p&gt;L'&lt;abbr title="Organisation des Nations Unies"&gt;ONU&lt;/abbr&gt; a été fondée en 1945.&lt;/p&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-3')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-3" class="result" style="display: none;">
+                        <h1>Titre principal</h1>
+                        <h2>Sous-titre</h2>
+                        <p>Ceci est un <strong>paragraphe</strong> avec du texte <em>mis en valeur</em>.</p>
+                        <blockquote>
+                            Ceci est une longue citation qui peut s'étendre sur plusieurs lignes.
+                        </blockquote>
+                        <p>Comme l'a dit quelqu'un, <q>Une citation courte</q>.</p>
+                        <p>L'<abbr title="Organisation des Nations Unies">ONU</abbr> a été fondée en 1945.</p>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les éléments de texte</h4>
+                    <form id="quiz3">
+                        <p>1. Quelle balise est utilisée pour le titre le plus important d'une page ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;h1&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;h6&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;title&gt;</label><br>
+
+                        <p>2. Quelle balise est utilisée pour mettre du texte en italique avec une importance sémantique
+                            ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) &lt;i&gt;</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) &lt;italic&gt;</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) &lt;em&gt;</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(3)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-3"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-link icon"></i>4. Les liens hypertextes</summary>
+            <div class="content">
+                <p>Les liens hypertextes sont essentiels pour la navigation sur le web. Ils permettent de connecter
+                    différentes pages ou ressources entre elles.</p>
+
+                <h3>Types de liens</h3>
+                <ul>
+                    <li>Liens externes (vers d'autres sites web)</li>
+                    <li>Liens internes (vers d'autres pages du même site)</li>
+                    <li>Liens d'ancrage (vers une section spécifique de la même page)</li>
+                    <li>Liens pour e-mail et téléphone</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Liens hypertextes</h4>
+                    <pre><code>&lt;a href="https://www.example.com"&gt;Lien externe&lt;/a&gt;
+&lt;a href="/page.html"&gt;Lien interne&lt;/a&gt;
+&lt;a href="#section1"&gt;Lien vers une ancre&lt;/a&gt;
+&lt;a href="mailto:contact@example.com"&gt;Envoyer un email&lt;/a&gt;
+&lt;a href="tel:+33123456789"&gt;Appeler&lt;/a&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-4')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-4" class="result" style="display: none;">
+                        <a href="https://www.example.com">Lien externe</a><br>
+                        <a href="/page.html">Lien interne</a><br>
+                        <a href="#section1">Lien vers une ancre</a><br>
+                        <a href="mailto:contact@example.com">Envoyer un email</a><br>
+                        <a href="tel:+33123456789">Appeler</a>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les liens hypertextes</h4>
+                    <form id="quiz4">
+                        <p>1. Quelle balise est utilisée pour créer un lien hypertexte ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;link&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;a&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;href&gt;</label><br>
+
+                        <p>2. Comment spécifie-t-on la destination d'un lien ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) Avec l'attribut src</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) Avec l'attribut link</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) Avec l'attribut href</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(4)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-4"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-image icon"></i>5. Les images et médias</summary>
+            <div class="content">
+                <p>L'intégration d'images et de médias enrichit le contenu d'une page web. HTML5 offre des balises
+                    natives pour l'audio et la vidéo.</p>
+
+                <h3>Éléments multimédias</h3>
+                <ul>
+                    <li><code>&lt;img&gt;</code> : Pour les images</li>
+                    <li><code>&lt;audio&gt;</code> : Pour l'audio</li>
+                    <li><code>&lt;video&gt;</code> : Pour la vidéo</li>
+                    <li><code>&lt;figure&gt;</code> et <code>&lt;figcaption&gt;</code> : Pour les images avec légende
+                    </li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Images et médias</h4>
+                    <pre><code>&lt;img src="https://via.placeholder.com/150" alt="Image d'exemple"&gt;
+
+&lt;figure&gt;
+    &lt;img src="https://via.placeholder.com/300x200" alt="Une belle image"&gt;
+    &lt;figcaption&gt;Légende de l'image&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    Votre navigateur ne supporte pas l'élément audio.
+&lt;/audio&gt;
+
+&lt;video width="320" height="240" controls&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    Votre navigateur ne supporte pas l'élément vidéo.
+&lt;/video&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-5')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-5" class="result" style="display: none;">
+                        <img src="https://via.placeholder.com/150" alt="Image d'exemple">
+
+                        <figure>
+                            <img src="https://via.placeholder.com/300x200" alt="Une belle image">
+                            <figcaption>Légende de l'image</figcaption>
+                        </figure>
+
+                        <audio controls>
+                            <source src="audio.mp3" type="audio/mpeg">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
+
+                        <video width="320" height="240" controls>
+                            <source src="video.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas l'élément vidéo.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les images et médias</h4>
+                    <form id="quiz5">
+                        <p>1. Quel attribut est obligatoire pour l'accessibilité dans la balise &lt;img&gt; ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) src</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) alt</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) title</label><br>
+
+                        <p>2. Quelle balise utilise-t-on pour intégrer de l'audio en HTML5 ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) &lt;sound&gt;</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) &lt;audio&gt;</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) &lt;music&gt;</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(5)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-5"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-list icon"></i>6. Les listes</summary>
+            <div class="content">
+                <p>Les listes en HTML permettent d'organiser et de structurer l'information. Il existe trois types
+                    principaux de listes : ordonnées, non ordonnées, et de définition.</p>
+
+                <h3>Types de listes</h3>
+                <ul>
+                    <li>Liste non ordonnée (<code>&lt;ul&gt;</code>)</li>
+                    <li>Liste ordonnée (<code>&lt;ol&gt;</code>)</li>
+                    <li>Liste de définition (<code>&lt;dl&gt;</code>)</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Listes</h4>
+                    <pre><code>&lt;h3&gt;Liste non ordonnée&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;Pommes&lt;/li&gt;
+    &lt;li&gt;Bananes&lt;/li&gt;
+    &lt;li&gt;Oranges&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Liste ordonnée&lt;/h3&gt;
+&lt;ol&gt;
+    &lt;li&gt;Première étape&lt;/li&gt;
+    &lt;li&gt;Deuxième étape&lt;/li&gt;
+    &lt;li&gt;Troisième étape&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Liste de définition&lt;/h3&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-6')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-6" class="result" style="display: none;">
+                        <h3>Liste non ordonnée</h3>
+                        <ul>
+                            <li>Pommes</li>
+                            <li>Bananes</li>
+                            <li>Oranges</li>
+                        </ul>
+
+                        <h3>Liste ordonnée</h3>
+                        <ol>
+                            <li>Première étape</li>
+                            <li>Deuxième étape</li>
+                            <li>Troisième étape</li>
+                        </ol>
+
+                        <h3>Liste de définition</h3>
+                        <dl>
+                            <dt>HTML</dt>
+                            <dd>HyperText Markup Language</dd>
+                            <dt>CSS</dt>
+                            <dd>Cascading Style Sheets</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les listes</h4>
+                    <form id="quiz6">
+                        <p>1. Quelle balise utilise-t-on pour créer une liste non ordonnée ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;ol&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;ul&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;li&gt;</label><br>
+
+                        <p>2. Quelle balise utilise-t-on pour une liste de définitions ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) &lt;def&gt;</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) &lt;dl&gt;</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) &lt;dt&gt;</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(6)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-6"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-table icon"></i>7. Les tableaux</summary>
+            <div class="content">
+                <p>Les tableaux en HTML sont utilisés pour présenter des données sous forme de lignes et de colonnes.
+                    Ils sont composés de plusieurs éléments comme table, tr, td, th, etc.</p>
+
+                <h3>Structure d'un tableau</h3>
+                <ul>
+                    <li><code>&lt;table&gt;</code> : Définit un tableau</li>
+                    <li><code>&lt;tr&gt;</code> : Définit une ligne</li>
+                    <li><code>&lt;th&gt;</code> : Définit une cellule d'en-tête</li>
+                    <li><code>&lt;td&gt;</code> : Définit une cellule de données</li>
+                    <li><code>&lt;caption&gt;</code> : Ajoute un titre au tableau</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Tableaux</h4>
+                    <pre><code>&lt;table&gt;
+    &lt;caption&gt;Exemple de tableau&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;En-tête 1&lt;/th&gt;
+            &lt;th&gt;En-tête 2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Donnée 1&lt;/td&gt;
+            &lt;td&gt;Donnée 2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Donnée 3&lt;/td&gt;
+            &lt;td&gt;Donnée 4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2"&gt;Pied de tableau&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-7')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-7" class="result" style="display: none;">
+                        <table>
+                            <caption>Exemple de tableau</caption>
+                            <thead>
+                                <tr>
+                                    <th>En-tête 1</th>
+                                    <th>En-tête 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Donnée 1</td>
+                                    <td>Donnée 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Donnée 3</td>
+                                    <td>Donnée 4</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Pied de tableau</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les tableaux</h4>
+                    <form id="quiz7">
+                        <p>1. Quelle balise utilise-t-on pour créer une ligne dans un tableau ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;td&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;th&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;tr&gt;</label><br>
+
+                        <p>2. Quel attribut utilise-t-on pour fusionner des colonnes ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) rowspan</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) colspan</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) merge</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(7)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-7"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-wpforms icon"></i>8. Les formulaires</summary>
+            <div class="content">
+                <p>Les formulaires HTML permettent aux utilisateurs d'interagir avec un site web en saisissant des
+                    données. Ils sont essentiels pour la collecte d'informations et l'interaction utilisateur.</p>
+
+                <h3>Éléments de formulaire</h3>
+                <ul>
+                    <li><code>&lt;form&gt;</code> : Conteneur du formulaire</li>
+                    <li><code>&lt;input&gt;</code> : Champ de saisie (texte, case à cocher, bouton radio, etc.)</li>
+                    <li><code>&lt;textarea&gt;</code> : Zone de texte multiligne</li>
+                    <li><code>&lt;select&gt;</code> et <code>&lt;option&gt;</code> : Liste déroulante</li>
+                    <li><code>&lt;button&gt;</code> : Bouton</li>
+                    <li><code>&lt;label&gt;</code> : Étiquette pour les champs de formulaire</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Formulaires</h4>
+                    <pre><code>&lt;form action="/submit-form" method="post"&gt;
+    &lt;label for="name"&gt;Nom :&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+
+    &lt;label for="email"&gt;Email :&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+
+    &lt;label for="password"&gt;Mot de passe :&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" required&gt;
+
+    &lt;label for="country"&gt;Pays :&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value="france"&gt;France&lt;/option&gt;
+        &lt;option value="canada"&gt;Canada&lt;/option&gt;
+        &lt;option value="belgique"&gt;Belgique&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;fieldset&gt;
+        &lt;legend&gt;Préférences :&lt;/legend&gt;
+        &lt;input type="checkbox" id="newsletter" name="newsletter"&gt;
+        &lt;label for="newsletter"&gt;S'abonner à la newsletter&lt;/label&gt;
+    &lt;/fieldset&gt;
+
+    &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-8')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-8" class="result" style="display: none;">
+                        <form action="/submit-form" method="post">
+                            <label for="name">Nom :</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="email">Email :</label>
+                            <input type="email" id="email" name="email" required>
+
+                            <label for="password">Mot de passe :</label>
+                            <input type="password" id="password" name="password" required>
+
+                            <label for="country">Pays :</label>
+                            <select id="country" name="country">
+                                <option value="france">France</option>
+                                <option value="canada">Canada</option>
+                                <option value="belgique">Belgique</option>
+                            </select>
+
+                            <fieldset>
+                                <legend>Préférences :</legend>
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">S'abonner à la newsletter</label>
+                            </fieldset>
+
+                            <button type="submit">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les formulaires</h4>
+                    <form id="quiz8">
+                        <p>1. Quelle balise utilise-t-on pour créer un formulaire ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;form&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;input&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;submit&gt;</label><br>
+
+                        <p>2. Quel attribut utilise-t-on pour rendre un champ obligatoire ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) mandatory</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) required</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) important</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(8)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-8"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-th-large icon"></i>9. Les éléments de mise en page</summary>
+            <div class="content">
+                <p>Les éléments de mise en page en HTML5 permettent de structurer le contenu de manière sémantique. Ils
+                    aident à organiser le contenu et améliorent l'accessibilité et le SEO.</p>
+
+                <h3>Éléments de mise en page HTML5</h3>
+                <ul>
+                    <li><code>&lt;header&gt;</code> : En-tête de la page ou d'une section</li>
+                    <li><code>&lt;nav&gt;</code> : Navigation principale</li>
+                    <li><code>&lt;main&gt;</code> : Contenu principal de la page</li>
+                    <li><code>&lt;article&gt;</code> : Contenu autonome</li>
+                    <li><code>&lt;section&gt;</code> : Section thématique de contenu</li>
+                    <li><code>&lt;aside&gt;</code> : Contenu connexe ou secondaire</li>
+                    <li><code>&lt;footer&gt;</code> : Pied de page</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Éléments de mise en page</h4>
+                    <pre><code>&lt;header&gt;
+    &lt;h1&gt;Mon Site Web&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#home"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#about"&gt;À propos&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Article Principal&lt;/h2&gt;
+        &lt;p&gt;Contenu de l'article...&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;aside&gt;
+        &lt;h3&gt;Contenu Annexe&lt;/h3&gt;
+        &lt;p&gt;Informations supplémentaires...&lt;/p&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2024 Mon Site Web. Tous droits réservés.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-9')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-9" class="result" style="display: none;">
+                        <header>
+                            <h1>Mon Site Web</h1>
+                            <nav>
+                                <ul>
+                                    <li><a href="#home">Accueil</a></li>
+                                    <li><a href="#about">À propos</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </header>
+
+                        <main>
+                            <article>
+                                <h2>Article Principal</h2>
+                                <p>Contenu de l'article...</p>
+                            </article>
+                            <aside>
+                                <h3>Contenu Annexe</h3>
+                                <p>Informations supplémentaires...</p>
+                            </aside>
+                        </main>
+
+                        <footer>
+                            <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Les éléments de mise en page</h4>
+                    <form id="quiz9">
+                        <p>1. Quel élément utilise-t-on pour le contenu principal d'une page ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) &lt;body&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) &lt;main&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) &lt;content&gt;</label><br>
+
+                        <p>2. Quelle balise représente une section de navigation ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) &lt;menu&gt;</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) &lt;navbar&gt;</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) &lt;nav&gt;</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(9)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-9"></div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-check-circle icon"></i>10. Validation et bonnes pratiques</summary>
+            <div class="content">
+                <p>La validation du code HTML et le respect des bonnes pratiques sont essentiels pour créer des sites
+                    web de qualité. Cela améliore l'accessibilité, le SEO et la compatibilité entre les navigateurs.</p>
+
+                <h3>Bonnes pratiques HTML</h3>
+                <ul>
+                    <li>Utiliser la déclaration DOCTYPE appropriée</li>
+                    <li>Spécifier la langue du document</li>
+                    <li>Utiliser des balises sémantiques</li>
+                    <li>Assurer l'accessibilité (textes alternatifs, structure logique)</li>
+                    <li>Valider le code HTML</li>
+                </ul>
+
+                <div class="example">
+                    <h4>Exemple : Validation HTML</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Exemple&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Titre Principal&lt;/h1&gt;
+    &lt;p&gt;Un paragraphe avec un &lt;a href="https://example.com"&gt;lien&lt;/a&gt;.&lt;/p&gt;
+    &lt;img src="https://placehold.co/200x200" alt="Description de l'image"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <button class="btn" onclick="showResult('example-result-10')"><i class="fas fa-eye"></i> Voir le
+                        résultat</button>
+                    <div id="example-result-10" class="result" style="display: none;">
+                        <h1>Titre Principal</h1>
+                        <p>Un paragraphe avec un <a href="https://example.com">lien</a>.</p>
+                        <img src="https://placehold.co/200x200" alt="Description de l'image">
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <h4>Quiz : Validation et bonnes pratiques</h4>
+                    <form id="quiz10">
+                        <p>1. Quel outil est recommandé pour valider le code HTML ?</p>
+                        <label><input type="radio" name="q1" value="a"> a) HTML Checker</label><br>
+                        <label><input type="radio" name="q1" value="b"> b) W3C Validator</label><br>
+                        <label><input type="radio" name="q1" value="c"> c) Code Inspector</label><br>
+
+                        <p>2. Pourquoi est-il important d'utiliser des balises sémantiques ?</p>
+                        <label><input type="radio" name="q2" value="a"> a) Pour améliorer l'apparence
+                            visuelle</label><br>
+                        <label><input type="radio" name="q2" value="b"> b) Pour améliorer le SEO et
+                            l'accessibilité</label><br>
+                        <label><input type="radio" name="q2" value="c"> c) Pour réduire la taille du fichier
+                            HTML</label><br>
+
+                        <button type="button" class="btn" onclick="checkQuiz(10)">Vérifier les réponses</button>
+                    </form>
+                    <div id="quiz-result-10"></div>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <script>
+        // Toggle dark/light mode
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                modeToggle.innerHTML = '<i class="fas fa-sun"></i> Mode Clair';
+            } else {
+                modeToggle.innerHTML = '<i class="fas fa-moon"></i> Mode Sombre';
+            }
+        });
+
+        // Show result function
+        function showResult(resultId) {
+            const resultElement = document.getElementById(resultId);
+            if (resultElement.style.display === 'none') {
+                resultElement.style.display = 'block';
+                resultElement.classList.add('fade-in');
+            } else {
+                resultElement.style.display = 'none';
+                resultElement.classList.remove('fade-in');
+            }
+        }
+
+        // Quiz functionality
+        function checkQuiz(quizNumber) {
+            const form = document.getElementById(`quiz${quizNumber}`);
+            const result = document.getElementById(`quiz-result-${quizNumber}`);
+            let score = 0;
+            const answers = {
+                1: ['a', 'c'],
+                2: ['c', 'b'],
+                3: ['a', 'c'],
+                4: ['b', 'c'],
+                5: ['b', 'b'],
+                6: ['b', 'b'],
+                7: ['c', 'b'],
+                8: ['a', 'b'],
+                9: ['b', 'c'],
+                10: ['b', 'b']
+            };
+
+            const quizAnswers = answers[quizNumber];
+
+            for (let i = 0; i < quizAnswers.length; i++) {
+                if (form[`q${i + 1}`].value === quizAnswers[i]) {
+                    score++;
+                }
+            }
+
+            let resultHTML = `<p><strong>Votre score : ${score}/${quizAnswers.length}</strong></p>`;
+
+            if (score === quizAnswers.length) {
+                resultHTML += '<p><i class="fas fa-trophy" style="color: gold;"></i> Excellent travail !</p>';
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else if (score > 0) {
+                resultHTML += '<p><i class="fas fa-thumbs-up" style="color: orange;"></i> Bon effort, continuez à apprendre !</p>';
+            } else {
+                resultHTML += '<p><i class="fas fa-book" style="color: red;"></i> Révisez ce chapitre et réessayez.</p>';
+            }
+
+            result.innerHTML = resultHTML;
+            result.classList.add('fade-in');
+        }
+    </script>
+</body>
+
+</html>
