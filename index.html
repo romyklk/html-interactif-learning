@@ -7,6 +7,7 @@
     <title>Cours HTML Avancé et Interactif</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
     <style>
         :root {
             --primary-color: #4a90e2;
@@ -61,23 +62,48 @@
             margin-bottom: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
         }
 
         summary {
-            padding: 1rem;
+            padding: 2rem;
             cursor: pointer;
             font-weight: bold;
             background-color: var(--primary-color);
             color: white;
             transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         summary:hover {
             background-color: var(--secondary-color);
         }
 
+        summary::after {
+            content: '\25BC';
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
         .content {
             padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        details[open] .content {
+            opacity: 1;
         }
 
         .example {
@@ -99,16 +125,21 @@
             background-color: var(--primary-color);
             color: white;
             padding: 0.5rem 1rem;
-            border: none !important;
+            border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
         }
 
         .btn:hover {
             background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         #mode-toggle {
@@ -131,6 +162,7 @@
 
         .icon {
             margin-right: 0.5rem;
+            font-size: xx-large;
         }
 
         .result {
@@ -965,6 +997,7 @@
         </details>
     </div>
 
+
     <script>
         // Toggle dark/light mode
         const modeToggle = document.getElementById('mode-toggle');
@@ -1037,7 +1070,55 @@
             result.innerHTML = resultHTML;
             result.classList.add('fade-in');
         }
-    </script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const details = document.querySelectorAll('details');
+
+            details.forEach((detail) => {
+                const summary = detail.querySelector('summary');
+                const content = detail.querySelector('.content');
+
+                // Initialiser la hauteur du contenu à 0
+                content.style.height = '0px';
+                content.style.overflow = 'hidden';
+
+                summary.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Calculer la hauteur totale du contenu
+                    const contentHeight = content.scrollHeight;
+
+                    if (!detail.open) {
+                        // Effet slideDown
+                        detail.open = true;
+                        const animation = content.animate([
+                            { height: '0px' },
+                            { height: contentHeight + 'px' }
+                        ], {
+                            duration: 500,
+                            easing: 'ease-in-out'
+                        });
+
+                        animation.onfinish = () => {
+                            content.style.height = 'auto';
+                        };
+                    } else {
+                        // Effet slideUp
+                        const animation = content.animate([
+                            { height: contentHeight + 'px' },
+                            { height: '0px' }
+                        ], {
+                            duration: 300,
+                            easing: 'ease-in-out'
+                        });
+
+                        animation.onfinish = () => {
+                            detail.open = false;
+                            content.style.height = '0px';
+                        };
+                    }
+                });
+            });
+        });    </script>
 </body>
 
 </html>
